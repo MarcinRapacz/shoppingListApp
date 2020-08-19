@@ -1,19 +1,19 @@
 import express from "express";
 
 interface HandleErrorInterface {
-  msg: string;
+  message: string;
   statusCode: number;
   content?: any[];
 }
 
 /**
  * Throw error.
- * @param  msg String
+ * @param  message String
  * @param  statusCode Nubmer
  */
 export default (data: HandleErrorInterface): HandleErrorInterface => {
   throw {
-    msg: data.msg,
+    message: data.message,
     statusCode: data.statusCode,
     data: data.content,
   };
@@ -25,5 +25,8 @@ export const handleError = (
   res: express.Response,
   next: express.NextFunction
 ) => {
-  res.status(err.statusCode).json({ message: err.msg, content: err.content });
+  console.log(err);
+  res
+    .status(err.statusCode)
+    .json({ message: err.message, content: err.content });
 };

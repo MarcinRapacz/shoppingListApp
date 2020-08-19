@@ -1,25 +1,22 @@
 {
   "name": "auth-rest-api-boilerplate",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "",
   "main": "server.ts",
   "dependencies": {
+    "@types/bcryptjs": "^2.4.2",
     "@types/cors": "^2.8.6",
     "@types/express": "^4.17.6",
     "@types/jsonwebtoken": "^8.5.0",
     "@types/mongoose": "^5.7.22",
-    "@types/passport": "^1.0.4",
-    "@types/passport-facebook": "^2.1.10",
-    "@types/passport-google-oauth": "^1.0.41",
+    "axios": "^0.19.2",
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-validator": "^6.5.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.9.18",
-    "passport": "^0.4.1",
-    "passport-facebook": "^3.0.0",
-    "passport-google-oauth": "^2.0.0"
+    "mongoose": "^5.9.18"
   },
   "devDependencies": {
     "nodemon": "^2.0.4",
@@ -29,7 +26,6 @@
   "scripts": {
     "start": "node dist/server.js",
     "build": "tsc",
-    "postinstall": "npm run build",
     "dev": "nodemon --watch src/**/*.ts --ignore src/**/*.spec.ts --exec ts-node src/server.ts"
   },
   "keywords": [],
