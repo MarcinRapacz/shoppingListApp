@@ -1,5 +1,5 @@
 import jsonwebtoken from "jsonwebtoken";
-import { UserInterface } from "../components/User/UserModel";
+import { UserInterface } from "../components/user/UserModel";
 
 export class JWT {
   static create(user: UserInterface): string {

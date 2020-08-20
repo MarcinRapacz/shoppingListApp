@@ -1,5 +1,5 @@
 import expores from "express";
-import User from "../components/User/UserModel";
+import User from "../components/user/UserModel";
 import handleError from "../tools/handleError";
 import { JWT } from "../tools/jsonWebToken";
 

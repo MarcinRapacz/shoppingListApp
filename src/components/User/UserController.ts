@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import axios from "axios";
 import { JWT } from "../../tools/jsonWebToken";
 import { handleValidation } from "../../tools/handleValidation";
-import User, { UserInterface } from "./UserModel";
+import User from "./UserModel";
 import handleError from "../../tools/handleError";
 import { parseSignedRequest } from "../../tools/facebookParseSignedRequest";
 

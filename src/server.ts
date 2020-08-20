@@ -4,7 +4,7 @@ dotenv.config();
 import express from "express";
 import cors from "cors";
 import "./config/mongoose";
-import UserRouter from "./components/User/UserRouter";
+import UserRouter from "./components/user/UserRouter";
 import { handleError } from "./tools/handleError";
 import secure from "./middlewares/secure";
 
