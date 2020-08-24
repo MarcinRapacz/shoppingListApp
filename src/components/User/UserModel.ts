@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 export interface UserInterface extends mongoose.Document {
-  id: string;
+  id: mongoose.Schema.Types.ObjectId;
   strategy: string;
   strategyId: string;
   name: string;

@@ -5,6 +5,7 @@ import express from "express";
 import cors from "cors";
 import "./config/mongoose";
 import UserRouter from "./components/user/UserRouter";
+import ShoppingListRouter from "./components/shoppingList/ShoppingListRouter";
 import { handleError } from "./tools/handleError";
 import secure from "./middlewares/secure";
 
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/api/auth", UserRouter);
+app.use("/api/shoppingList", ShoppingListRouter);
 
 app.use("/api/test", (req, res) => {
   res.send("test");

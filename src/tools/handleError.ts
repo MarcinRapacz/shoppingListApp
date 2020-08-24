@@ -6,6 +6,11 @@ interface HandleErrorInterface {
   content?: any[];
 }
 
+interface ErrorResponse {
+  message: string;
+  content?: any[];
+}
+
 /**
  * Throw error.
  * @param  message String
@@ -22,11 +27,11 @@ export default (data: HandleErrorInterface): HandleErrorInterface => {
 export const handleError = (
   err: HandleErrorInterface,
   req: express.Request,
-  res: express.Response,
+  res: express.Response<ErrorResponse>,
   next: express.NextFunction
 ) => {
   console.log(err);
-  res
+  return res
     .status(err.statusCode)
     .json({ message: err.message, content: err.content });
 };
