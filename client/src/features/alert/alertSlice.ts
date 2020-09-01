@@ -13,14 +13,8 @@ export const alertSlice = createSlice({
   initialState,
   reducers: {
     set: (state, action: PayloadAction<IAlert>) => {
-      // const timeoutId = setTimeout(() => {
-      //   state.message = "";
-      //   state.status = "";
-      // }, 4000);
-
       state.message = action.payload.message;
       state.status = action.payload.status;
-      // state.timeoutId = timeoutId;
     },
 
     clear: (state) => {
