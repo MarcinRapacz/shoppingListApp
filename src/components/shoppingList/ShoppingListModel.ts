@@ -7,13 +7,13 @@ const ShoppingListShema = new mongoose.Schema<ShoppingListInterface>(
     members: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "user",
+        ref: "User",
       },
     ],
     products: [
       {
-        name: String,
-        status: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Product",
       },
     ],
     status: String,
@@ -22,6 +22,6 @@ const ShoppingListShema = new mongoose.Schema<ShoppingListInterface>(
 );
 
 export default mongoose.model<ShoppingListInterface>(
-  "shoppingList",
+  "ShoppingList",
   ShoppingListShema
 );

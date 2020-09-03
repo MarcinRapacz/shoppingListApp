@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { IProduct } from "../product/IProduct";
 
 export interface IResponse {
   message: string;
@@ -14,7 +15,7 @@ export interface IRequestShoppingListBody {
 export interface ShoppingListInterface extends mongoose.Document {
   name: string;
   members: mongoose.Schema.Types.ObjectId[];
-  products: { name: string; status: string }[];
+  products: IProduct[];
   status: string;
 }
 

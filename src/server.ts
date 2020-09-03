@@ -5,6 +5,7 @@ import express from "express";
 import cors from "cors";
 import "./config/mongoose";
 import UserRouter from "./components/user/UserRouter";
+import ProductRouter from "./components/product/ProductRouter";
 import ShoppingListRouter from "./components/shoppingList/ShoppingListRouter";
 import { handleError } from "./tools/handleError";
 import secure from "./middlewares/secure";
@@ -15,6 +16,7 @@ app.use(cors());
 
 app.use("/api/auth", UserRouter);
 app.use("/api/shoppingList", ShoppingListRouter);
+app.use("/api/product", ProductRouter);
 
 app.use("/api/test", (req, res) => {
   res.send("test");
@@ -32,4 +34,6 @@ app.use("/api/tests", secure, (req, res) => {
 
 app.use(handleError);
 
-app.listen(process.env.PORT, () => console.log("App working"));
+app.listen(process.env.PORT, () =>
+  console.log(`App working: Port: ${process.env.PORT}`)
+);

@@ -22,4 +22,4 @@ const UserShema = new mongoose.Schema<UserInterface>(
   { timestamps: true }
 );
 
-export default mongoose.model<UserInterface>("user", UserShema);
+export default mongoose.model<UserInterface>("User", UserShema);
