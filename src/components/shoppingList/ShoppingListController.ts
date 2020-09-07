@@ -6,7 +6,10 @@ import {
   IResponse,
   IRequestShoppingListBody,
   TypeRequestShoppingListParams,
+  IRequestMemberBody,
 } from "./ShoppingListInterface";
+import UserModel from "../user/UserModel";
+import ProductModel from "../product/ProductModel";
 
 export const create = async (
   req: express.Request<{}, {}, IRequestShoppingListBody>,
@@ -148,12 +151,56 @@ export const update = async (
   }
 };
 
-// Remove?
-
 // Add member
+export const toggleMember = async (
+  req: express.Request<TypeRequestShoppingListParams, {}, IRequestMemberBody>,
+  res: express.Response,
+  next: express.NextFunction
+) => {
+  try {
+    const { email } = req.body;
+    const { id } = req.params;
 
-// Remove member
+    const shoppingList = await ShoppingListModel.findOne({
+      _id: id,
+      members: req.user._id,
+    });
 
-// Add produkt
+    if (!shoppingList) {
+      return handleError({
+        message: "Shopping List not found",
+        statusCode: 404,
+      });
+    }
 
-// Remove produkt
+    const member = await UserModel.findOne({ email });
+
+    if (!member) {
+      return handleError({
+        message: "User not found",
+        statusCode: 404,
+      });
+    }
+
+    if (shoppingList.members.includes(member._id)) {
+      shoppingList.members = shoppingList.members.filter(
+        (memberId) => memberId.toString() !== member._id.toString()
+      );
+    } else {
+      shoppingList.members.push(member._id);
+    }
+
+    if (shoppingList.members.length) {
+      await shoppingList.save();
+    } else {
+      shoppingList.products.forEach(async (productId) => {
+        await ProductModel.findByIdAndRemove(productId);
+      });
+      await shoppingList.remove();
+    }
+
+    return res.status(200).json({ message: "Shopping list members updated" });
+  } catch (error) {
+    next(error);
+  }
+};

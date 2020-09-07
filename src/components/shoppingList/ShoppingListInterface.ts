@@ -12,6 +12,10 @@ export interface IRequestShoppingListBody {
   status: string;
 }
 
+export interface IRequestMemberBody {
+  email: string;
+}
+
 export interface ShoppingListInterface extends mongoose.Document {
   name: string;
   members: mongoose.Schema.Types.ObjectId[];

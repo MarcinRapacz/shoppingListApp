@@ -13,3 +13,5 @@ export const update = [
     .custom((value) => avilableStatus.includes(value))
     .optional(),
 ];
+
+export const toggleMember = [param("id").isMongoId(), check("email").isEmail()];
