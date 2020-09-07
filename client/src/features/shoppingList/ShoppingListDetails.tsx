@@ -19,6 +19,8 @@ import FormShoppingList from "./FormShoppingList";
 // Actions
 import * as alertActions from "../alert/alertSlice";
 import * as loaderActions from "../loader/loaderSlice";
+import ProductContainer from "../product/ProductContainer";
+import { IProduct } from "../product/IProduct";
 
 interface Params {
   id: string;
@@ -33,6 +35,10 @@ const ShoppingListDetails: React.FC = () => {
   );
   const [isEditMode, setIsEditMode] = React.useState(false);
   const { name, status, _id, products } = shoppingList;
+
+  const handleUpdateProductList = (products: IProduct[]) => {
+    setShoppingList({ ...shoppingList, products });
+  };
 
   const getShoppingList = React.useCallback(
     async (id: string) => {
@@ -116,7 +122,11 @@ const ShoppingListDetails: React.FC = () => {
             </h4>
           )}
           <Status onClick={handleClick} status={status} />
-          <p>TODO: Lista produktow</p>
+          <ProductContainer
+            products={products}
+            upadateProductList={handleUpdateProductList}
+            shoppingListStatus={status}
+          />
         </Col>
       </Row>
     </Container>

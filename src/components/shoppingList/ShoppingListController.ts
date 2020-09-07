@@ -123,6 +123,19 @@ export const update = async (
 
     if (status) {
       shoppingList.status = status;
+      shoppingList.products = shoppingList.products
+        .filter((product) => {
+          if (product.status === "in") {
+            product.remove();
+            return false;
+          }
+
+          return true;
+        })
+        .map((product) => {
+          product.status = "awaiting";
+          return product;
+        });
     }
 
     await shoppingList.save();

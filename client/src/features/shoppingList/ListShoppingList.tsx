@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faShoppingBasket } from "@fortawesome/free-solid-svg-icons";
 import "./ShoppingList.scss";
 
 // Actions
@@ -57,6 +57,10 @@ const ListShoppingList: React.FC = () => {
               <div className="info">
                 <Status status={item.status} />
                 <p className="members my-0 mx-3">
+                  <FontAwesomeIcon icon={faShoppingBasket} />
+                  <span className="text mx-1">{item.products.length}</span>
+                </p>
+                <p className="members my-0 mr-2">
                   <FontAwesomeIcon icon={faUser} />
                   <span className="text mx-1">{item.members.length}</span>
                 </p>
