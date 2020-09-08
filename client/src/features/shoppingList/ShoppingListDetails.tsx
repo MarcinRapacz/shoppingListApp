@@ -3,7 +3,11 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 import { useParams, useHistory, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBackspace, faEdit } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBackspace,
+  faEdit,
+  faUsers,
+} from "@fortawesome/free-solid-svg-icons";
 import "./ShoppingList.scss";
 
 // Interfaces
@@ -21,6 +25,7 @@ import * as alertActions from "../alert/alertSlice";
 import * as loaderActions from "../loader/loaderSlice";
 import ProductContainer from "../product/ProductContainer";
 import { IProduct } from "../product/IProduct";
+import MemberContainer from "../member/MemberContainer";
 
 interface Params {
   id: string;
@@ -34,10 +39,19 @@ const ShoppingListDetails: React.FC = () => {
     {} as IShoppingList
   );
   const [isEditMode, setIsEditMode] = React.useState(false);
+  const [isToggleMemberMode, setIsToggleMemberMode] = React.useState(false);
   const { name, status, _id, products } = shoppingList;
 
   const handleUpdateProductList = (products: IProduct[]) => {
     setShoppingList({ ...shoppingList, products });
+  };
+
+  const handleToggleMember = () => {
+    setIsToggleMemberMode(!isToggleMemberMode);
+  };
+
+  const handleSetToggleMember = (state: boolean) => {
+    setIsToggleMemberMode(state);
   };
 
   const getShoppingList = React.useCallback(
@@ -92,7 +106,7 @@ const ShoppingListDetails: React.FC = () => {
 
   React.useEffect(() => {
     getShoppingList(params.id);
-  }, [getShoppingList, params.id]);
+  }, [getShoppingList, params.id, isToggleMemberMode]);
 
   React.useEffect(() => {
     document.addEventListener("keydown", escFunction);
@@ -109,8 +123,24 @@ const ShoppingListDetails: React.FC = () => {
           <Button as={Link} to={shoppingListAPI.URL} variant="outline-info">
             <FontAwesomeIcon icon={faBackspace} /> ESC
           </Button>
+          <Button
+            variant={`${isToggleMemberMode ? "info" : "outline-info"}`}
+            onClick={handleToggleMember}
+          >
+            <FontAwesomeIcon icon={faUsers} />
+          </Button>
         </Col>
       </Row>
+      {isToggleMemberMode && (
+        <Row className="justify-content-md-center mb-4">
+          <Col xs md="4">
+            <MemberContainer
+              shoppingList={shoppingList}
+              handleVisibility={handleSetToggleMember}
+            />
+          </Col>
+        </Row>
+      )}
       <Row className="justify-content-md-center">
         <Col xs md="4">
           {isEditMode ? (

@@ -8,8 +8,12 @@ const Alert: React.FC = () => {
   const { alert } = useSelector((state: IStore) => state);
   const { message, status } = alert;
 
+  if (!message) {
+    return null;
+  }
+
   return (
-    <BootstrapAlert className={`Alert `} variant={status} show={!!message}>
+    <BootstrapAlert className={`Alert `} variant={status}>
       {alert.message}
     </BootstrapAlert>
   );

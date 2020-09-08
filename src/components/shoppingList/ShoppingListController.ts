@@ -76,7 +76,9 @@ export const get = async (
     const shoppingList = await ShoppingListModel.findOne({
       _id: shoppingListId,
       members: userId,
-    }).populate("products");
+    })
+      .populate("products")
+      .populate({ path: "members", select: "email name photoURL" });
 
     if (!shoppingList) {
       return handleError({
@@ -111,7 +113,9 @@ export const update = async (
     const shoppingList = await ShoppingListModel.findOne({
       _id: shoppingListId,
       members: userId,
-    }).populate("products");
+    })
+      .populate("products")
+      .populate({ path: "members", select: "email name photoURL" });
 
     if (!shoppingList) {
       return handleError({

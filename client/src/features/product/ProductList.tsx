@@ -22,7 +22,7 @@ const ProductList: React.FC<Props> = (props: Props) => {
     id: string
   ) => {
     try {
-      const response = await ProductAPI.remove(id);
+      await ProductAPI.remove(id);
       props.upadateProductList(
         props.products.filter((product) => product._id !== id)
       );

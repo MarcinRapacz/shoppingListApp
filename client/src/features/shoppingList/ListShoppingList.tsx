@@ -18,6 +18,7 @@ import Status from "../../components/Status/Status";
 
 // Interfaces
 import { IShoppingList } from "./IShoppingList";
+import Logout from "../auth/Logout";
 
 const ListShoppingList: React.FC = () => {
   const dispatch = useDispatch();
@@ -72,6 +73,11 @@ const ListShoppingList: React.FC = () => {
       <Row className="justify-content-md-center mt-3">
         <Col xs md="4">
           <FormShoppingList title="Dodaj nową liste" />
+        </Col>
+      </Row>
+      <Row className="justify-content-md-center mt-3">
+        <Col xs md="4">
+          <Logout />
         </Col>
       </Row>
     </Container>

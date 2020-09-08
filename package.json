@@ -24,7 +24,7 @@
     "typescript": "^3.9.3"
   },
   "scripts": {
-    "start": "node dist/server.js",
+    "start": "ts-node src/server.ts",
     "build": "tsc",
     "dev": "nodemon --watch src/**/*.ts --ignore src/**/*.spec.ts --exec ts-node src/server.ts"
   },
